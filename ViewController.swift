@@ -40,18 +40,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var aiCagandoBusqueda: UIActivityIndicatorView!
     @IBOutlet weak var tvPeliculas: UITableView!
     
+    //Se crea una variable de URL base para poder buscar con el text field
+    let urlBase = "https://www.omdbapi.com/?apikey=1d2750f9&s="
     
     //Actions
     @IBAction func doTapBuscarPelicula(_ sender: Any) {
+        //Aquí hasta presionar el botón buscar, se hace la llamada a alamo fire
+        aiCagandoBusqueda.startAnimating()
         
+        //Variable que me dice que esta buscando el ususario
+        var busqueda = txtBusqueda.text!
         
-    }
-    
-    //Aquí se manda llamar a la URL
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        busqueda = busqueda.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
         
-        Alamofire.request("https://www.omdbapi.com/?apikey=1d2750f9&s=godfather").responseJSON{
+        Alamofire.request("\(urlBase)\(busqueda)").responseJSON{
             response in
             
             Datos.resultadosPeliculas.removeAll()
@@ -71,8 +73,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 
             }
-            
+            self.aiCagandoBusqueda.stopAnimating()
         }
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destino = segue.destination as? DetallePeliculaController{
+            destino.pelicula = Datos.resultadosPeliculas[(tvPeliculas.indexPathForSelectedRow?.row)!]
+        }
+    }
+    
+    //Aquí se manda llamar a la URL
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+       
 
         
         

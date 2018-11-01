@@ -15,9 +15,11 @@ class Pelicula {
     
     var titulo : String
     var año : Int
+    var id : String?
     var clasificacion : String?
     var genero: String?
     var director : String?
+    var duracion : String?
     //Las ultimas variables son opcionales para usarlas posteriormente
     
     
@@ -40,9 +42,17 @@ class Pelicula {
             
         }
         
-        if let valorAño = diccionario.value(forKey: "Year") as? Int{
+        if let valorAño = diccionario.value(forKey: "Year") as? String{
             
-            año = valorAño
+            //Este codigo toma los primeros cuatro caracteres de un string mediante indexes
+            let indiceFinal = valorAño.index(valorAño.startIndex, offsetBy: 4)
+            año = Int(valorAño[..<indiceFinal])!
+        }
+        
+        //Se agrega la propiedad de la ID porque es más espeficico al momento de buscar
+        if let imdbID = diccionario.value(forKey: "imdbID") as? String {
+            self.id = imdbID
         }
     }
+    
 }
