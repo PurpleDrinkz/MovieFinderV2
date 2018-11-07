@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import AlamofireImage
 
 
 class DetallePeliculaController : UIViewController{
@@ -25,6 +26,7 @@ class DetallePeliculaController : UIViewController{
     @IBOutlet weak var lblDirector: UILabel!
     @IBOutlet weak var lblClasificacion: UILabel!
     @IBOutlet weak var lblDuracion: UILabel!
+    @IBOutlet weak var imgPoster: UIImageView!
     
     
     //ACTIONS
@@ -68,8 +70,15 @@ class DetallePeliculaController : UIViewController{
                         self.pelicula?.genero = duracion
                         self.lblGenero.text = duracion
                     }
+                    if let poster = dictResultado.value(forKey: "Poster") as? String {
+                        self.pelicula?.posterPelicula = poster
+                        Alamofire.request(poster).responseImage{
+                            response in
+                            self.imgPoster.image = response.result.value
+                        }
+                    }
                     
-                }
+                }1
             }
         }
         

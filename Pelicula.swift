@@ -10,6 +10,9 @@
 //Aquí se definen los atributos que tendría cada modelo a traves de variables
 import Foundation
 import UIKit
+import Alamofire
+import AlamofireImage
+
 
 class Pelicula {
     
@@ -20,6 +23,7 @@ class Pelicula {
     var genero: String?
     var director : String?
     var duracion : String?
+    var posterPelicula :String?
     //Las ultimas variables son opcionales para usarlas posteriormente
     
     
@@ -53,6 +57,8 @@ class Pelicula {
         if let imdbID = diccionario.value(forKey: "imdbID") as? String {
             self.id = imdbID
         }
+        
+        
     }
     
 }

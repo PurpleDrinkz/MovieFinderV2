@@ -167,6 +167,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bTP-i2-DW1">
+                                <rect key="frame" x="17" y="279" width="342" height="287"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -196,6 +200,7 @@
                         <viewLayoutGuide key="safeArea" id="R0l-1I-xv5"/>
                     </view>
                     <connections>
+                        <outlet property="imgPoster" destination="bTP-i2-DW1" id="lpe-6H-boD"/>
                         <outlet property="lblAño" destination="PdM-jG-v0l" id="q4L-E9-bAX"/>
                         <outlet property="lblClasificacion" destination="zDu-mV-tPf" id="aO5-p8-k2a"/>
                         <outlet property="lblDirector" destination="Ya6-ae-jl5" id="86B-Ez-57z"/>
